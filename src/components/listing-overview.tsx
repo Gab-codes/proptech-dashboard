@@ -5,7 +5,7 @@ const ListingOverview = () => {
   return (
     <section className="border border-card-border rounded-2xl bg-white overflow-hidden">
       {/* Header */}
-      <div className="bg-[#F9FAFB] border-b border-card-border p-4">
+      <div className="bg-[#F9FAFB] border-b-[0.5px] border-card-border p-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <img src={HomeIcon} alt="home icon" />
