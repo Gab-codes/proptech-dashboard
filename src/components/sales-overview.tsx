@@ -1,6 +1,7 @@
 import ArrowUp from "../assets/arrow-up-green.svg";
 import RedArrowDown from "../assets/arrow-down-red.svg";
 import ArrowDown from "../assets/arrow-down-teal.svg";
+import SalesBarChart from "./sales-barchart";
 
 const stats = [
   {
@@ -68,7 +69,9 @@ const SalesOverview = () => {
 
       {/* bottom content  */}
       <div className="ps-2 py-4 pe-5 flex items-center justify-between">
-        <div>graph</div>
+        <div>
+          <SalesBarChart />
+        </div>
 
         <div className="grid grid-cols-2 gap-4">
           {stats.map(

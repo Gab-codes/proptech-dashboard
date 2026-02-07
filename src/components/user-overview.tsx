@@ -5,7 +5,7 @@ const UserOverview = () => {
   return (
     <section className="border border-card-border rounded-2xl bg-white overflow-hidden">
       {/* Header */}
-      <div className="bg-[#F9FAFB] border-b border-card-border p-4">
+      <div className="bg-[#F9FAFB] border-b-[0.5px] border-card-border p-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <img src={UserIcon} alt="user icon" />
@@ -23,7 +23,7 @@ const UserOverview = () => {
       <div className="grid grid-cols-3 gap-4 p-4">
         <div className="flex flex-col gap-3">
           <span className="text-sm">Total</span>
-          <span className="font-semibold text-2xl text-[#141414]">1.8k</span>
+          <span className="font-semibold text-2xl text-[#141414]">20.7k</span>
         </div>
 
         <div className="flex flex-col gap-3">
