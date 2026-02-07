@@ -1,0 +1,14 @@
+@import "tailwindcss";
+@import "./fonts/font-styles.css";
+
+:root {
+  font-family:
+    "Euclid Circular B", system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --primary: #105b48;
+  --card-border: #e4e4e4;
+}
+
+@theme inline {
+  --color-primary: var(--primary);
+  --color-card-border: var(--card-border);
+}
