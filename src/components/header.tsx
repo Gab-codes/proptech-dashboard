@@ -10,8 +10,9 @@ import user from "../assets/Profile1.svg";
 import article from "../assets/Article.svg";
 import scroll from "../assets/Scroll.svg";
 import task from "../assets/task-square.svg";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import BudgetModal from "./budget-modal";
+import CalendarDropdown from "./calendar-dropdwon";
 
 type IconAction = "budget" | "calendar" | undefined;
 
@@ -38,17 +39,19 @@ const navItems = [
 
 const Header = () => {
   const [isBudgetOpen, setIsBudgetOpen] = useState(false);
+  const [isCalendarOpen, setIsCalendarOpen] = useState(false);
+  const calendarButtonRef = useRef<HTMLDivElement | null>(null);
 
   const handleIconClick = (action?: string) => {
     if (!action) return;
 
     if (action === "budget") {
-      setIsBudgetOpen(true);
+      setIsBudgetOpen((prev) => !prev);
     }
 
-    // if (action === "calendar") {
-    //   setIsCalendarOpen((prev) => !prev);
-    // }
+    if (action === "calendar") {
+      setIsCalendarOpen((prev) => !prev);
+    }
   };
 
   return (
@@ -60,7 +63,11 @@ const Header = () => {
         <div className="flex items-center gap-5">
           <div className="flex items-center gap-4">
             {icons.map(({ src, alt, action }, idx) => (
-              <div key={idx} className="relative">
+              <div
+                key={idx}
+                className="relative"
+                ref={action === "calendar" ? calendarButtonRef : null}
+              >
                 <img
                   src={src}
                   alt={alt}
@@ -110,6 +117,12 @@ const Header = () => {
       <BudgetModal
         isBudgetOpen={isBudgetOpen}
         setIsBudgetOpen={setIsBudgetOpen}
+      />
+
+      <CalendarDropdown
+        isCalendarOpen={isCalendarOpen}
+        setIsCalendarOpen={setIsCalendarOpen}
+        buttonRef={calendarButtonRef as React.RefObject<HTMLDivElement>}
       />
     </header>
   );
