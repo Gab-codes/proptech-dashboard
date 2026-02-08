@@ -69,9 +69,7 @@ const SalesOverview = () => {
 
       {/* bottom content  */}
       <div className="ps-2 py-4 pe-5 flex items-center justify-between">
-        <div>
-          <SalesBarChart />
-        </div>
+        <SalesBarChart />
 
         <div className="grid grid-cols-2 gap-4">
           {stats.map(
@@ -85,13 +83,15 @@ const SalesOverview = () => {
             }) => (
               <div
                 key={label}
-                className="py-3 px-4 border border-card-border rounded-xl space-y-2"
+                className="py-3 px-4 lg:px-1.5 xl:px-4 border border-card-border rounded-xl space-y-2"
               >
-                <h3 className={`text-[19px] font-semibold ${amountColor}`}>
+                <h3
+                  className={`lg:text-[13px] lg:tracking-tight xl:tracking-normal xl:text-base  [@media(min-width:1320px)]:text-[19px] font-semibold ${amountColor}`}
+                >
                   {amount}
                 </h3>
 
-                <p className="flex items-center gap-2 text-[10px]">
+                <p className="flex items-center gap-2 lg:text-[9px] lg:tracking-tight xl:tracking-normal xl:text-[10px]">
                   {label}
                   <span className={`flex items-center gap-1 ${trendColor}`}>
                     <img src={trendIcon} alt="trend icon" />

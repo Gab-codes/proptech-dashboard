@@ -7,6 +7,8 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { useState } from "react";
+import ArrowRight from "../assets/arrow-fill-right.svg";
+import ArrowLeft from "../assets/arrow-fill-left.svg";
 
 const data = [
   { month: "Jan", blue: 35, green: 27, red: 9 },
@@ -33,57 +35,100 @@ const SalesBarChart = () => {
 
   const visibleData = data.slice(startIndex, startIndex + VISIBLE_MONTHS);
 
+  const yTicks = [0, 10, 20, 30, 40, 50];
+
+  const yTickFormatter = (value: number) => {
+    if (value === 0) return "0";
+    return `${value}m`;
+  };
+
   return (
-    <div className="w-[400px] max-w-full">
+    <div className="w-[400px] 2xl:w-[500px] max-w-full">
       <div className="flex items-center gap-1">
-        {/* LEFT BUTTON */}
+        {/* left button */}
         <button
-          onClick={() => setStartIndex((i) => i - 1)}
+          onClick={() => setStartIndex((i) => Math.max(0, i - 1))}
           disabled={!canScrollLeft}
-          className={`size-8 rounded-full bg-gray-100 text-xs flex items-center justify-center ${
+          className={`z-10 size-4.5 rounded-full bg-card-border flex items-center justify-center ${
             canScrollLeft
-              ? "hover:bg-gray-200"
+              ? "hover:bg-gray-200 cursor-pointer"
               : "opacity-40 cursor-not-allowed"
           }`}
+          aria-label="scroll left"
         >
-          ◀
+          <img src={ArrowLeft} alt="arrow left" />
         </button>
 
-        {/* CHART */}
-        <div className="h-[260px] flex-1 -ms-7">
+        {/* chart */}
+        <div className="h-[200px] flex-1 -ms-6">
           <ResponsiveContainer width="100%" height="100%">
-            <BarChart data={visibleData} barGap={6}>
+            <BarChart
+              data={visibleData}
+              barGap={3}
+              margin={{ left: 8, right: 8, top: 12, bottom: 8 }}
+            >
+              {/* x axis  */}
               <XAxis
                 dataKey="month"
-                tick={{ fontSize: 12, fill: "#9CA3AF" }}
+                tick={{ fontSize: 12, fill: "#6B7280", fontWeight: 400 }}
                 axisLine={false}
                 tickLine={false}
+                padding={{ left: 8, right: 8 }}
               />
-              <YAxis
-                tick={{ fontSize: 12, fill: "#9CA3AF" }}
-                axisLine={false}
-                tickLine={false}
-              />
-              <Tooltip cursor={{ fill: "transparent" }} />
 
-              <Bar dataKey="blue" fill="#4545FE" radius={[0, 0, 0, 0]} />
-              <Bar dataKey="green" fill="#12B76A" radius={[0, 0, 0, 0]} />
-              <Bar dataKey="red" fill="#F04438" radius={[0, 0, 0, 0]} />
+              {/* y axis */}
+              <YAxis
+                ticks={yTicks}
+                tickFormatter={yTickFormatter}
+                tick={{ fontSize: 12, fill: "#9CA3AF" }}
+                tickLine={false}
+                axisLine={{ stroke: "#E6E6E9", strokeWidth: 1 }}
+                width={56}
+                domain={[0, 50]}
+              />
+
+              <Tooltip
+                cursor={{ fill: "rgba(0,0,0,0.03)" }}
+                formatter={(v: number | undefined) => `${v}m`}
+              />
+
+              {/* bars */}
+              <Bar
+                dataKey="blue"
+                barSize={4}
+                fill="#4545FE"
+                radius={[0, 0, 0, 0]}
+              />
+              <Bar
+                dataKey="green"
+                barSize={4}
+                fill="#14B8A6"
+                radius={[0, 0, 0, 0]}
+              />
+              <Bar
+                dataKey="red"
+                barSize={4}
+                fill="#F04438"
+                radius={[0, 0, 0, 0]}
+              />
             </BarChart>
           </ResponsiveContainer>
         </div>
 
-        {/* RIGHT BUTTON */}
+        {/* right button */}
         <button
-          onClick={() => setStartIndex((i) => i + 1)}
+          onClick={() =>
+            setStartIndex((i) => Math.min(data.length - VISIBLE_MONTHS, i + 1))
+          }
           disabled={!canScrollRight}
-          className={`size-8 rounded-full bg-gray-100 text-xs flex items-center justify-center ${
+          className={`size-4.5 rounded-full bg-card-border flex items-center justify-center ${
             canScrollRight
-              ? "hover:bg-gray-200"
+              ? "hover:bg-gray-200 cursor-pointer"
               : "opacity-40 cursor-not-allowed"
           }`}
+          aria-label="scroll right"
         >
-          ▶
+          <img src={ArrowRight} alt="arrow right" />
         </button>
       </div>
     </div>
