@@ -1,5 +1,6 @@
 import Header from "./components/header";
 import ListingOverview from "./components/listing-overview";
+import OtherActions from "./components/other-actions";
 import SalesOverview from "./components/sales-overview";
 import UserOverview from "./components/user-overview";
 
@@ -18,6 +19,8 @@ function App() {
             <UserOverview />
           </div>
         </div>
+
+        <OtherActions />
       </div>
     </main>
   );
