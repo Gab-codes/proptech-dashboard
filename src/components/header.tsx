@@ -10,10 +10,18 @@ import user from "../assets/Profile1.svg";
 import article from "../assets/Article.svg";
 import scroll from "../assets/Scroll.svg";
 import task from "../assets/task-square.svg";
+import { useState } from "react";
+import BudgetModal from "./budget-modal";
 
-const icons = [
-  { src: budgeting, alt: "budgeting icon" },
-  { src: calender, alt: "calender icon" },
+type IconAction = "budget" | "calendar" | undefined;
+
+const icons: {
+  src: string;
+  alt: string;
+  action?: IconAction;
+}[] = [
+  { src: budgeting, alt: "budgeting icon", action: "budget" },
+  { src: calender, alt: "calendar icon", action: "calendar" },
   { src: search, alt: "search icon" },
   { src: payout, alt: "payout icon" },
   { src: marketplace, alt: "marketplace icon" },
@@ -29,6 +37,20 @@ const navItems = [
 ];
 
 const Header = () => {
+  const [isBudgetOpen, setIsBudgetOpen] = useState(false);
+
+  const handleIconClick = (action?: string) => {
+    if (!action) return;
+
+    if (action === "budget") {
+      setIsBudgetOpen(true);
+    }
+
+    // if (action === "calendar") {
+    //   setIsCalendarOpen((prev) => !prev);
+    // }
+  };
+
   return (
     <header className="flex flex-col z-50 sticky top-0 border-b border-[#F4F4F5]">
       {/* header top */}
@@ -37,13 +59,15 @@ const Header = () => {
 
         <div className="flex items-center gap-5">
           <div className="flex items-center gap-4">
-            {icons.map(({ src, alt }, idx) => (
-              <img
-                key={idx}
-                src={src}
-                alt={alt}
-                className="hover:scale-110 transition-all duration-300 cursor-pointer"
-              />
+            {icons.map(({ src, alt, action }, idx) => (
+              <div key={idx} className="relative">
+                <img
+                  src={src}
+                  alt={alt}
+                  onClick={() => handleIconClick(action)}
+                  className="hover:scale-110 transition-all duration-300 cursor-pointer"
+                />
+              </div>
             ))}
           </div>
 
@@ -61,11 +85,11 @@ const Header = () => {
             href={href}
             className={`
             flex items-center px-8 py-2 gap-2 rounded-lg
-            transition-colors duration-300 ease-in-out
+            transition-all duration-300 ease-in-out
             ${
               active
                 ? "text-primary bg-primary/15"
-                : "text-[#3D3D3D] hover:text-primary hover:font-semibold hover:bg-primary/10"
+                : "text-[#3D3D3D] hover:text-primary hover:bg-primary/10"
             }
           `}
           >
@@ -82,6 +106,11 @@ const Header = () => {
           </a>
         ))}
       </nav>
+
+      <BudgetModal
+        isBudgetOpen={isBudgetOpen}
+        setIsBudgetOpen={setIsBudgetOpen}
+      />
     </header>
   );
 };
