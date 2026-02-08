@@ -1,10 +1,4 @@
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from "./ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "./ui/dialog";
 import BudgetSketch from "../assets/Sketch.svg";
 import SettingsIcon from "../assets/setting-4.svg";
 import TrendingUp from "../assets/trend-up.svg";
@@ -34,7 +28,7 @@ const BudgetModal = ({
           </DialogHeader>
         </div>
 
-        <DialogDescription className="flex flex-col gap-4 px-12">
+        <div className="flex flex-col gap-4 px-12">
           <div className="flex items-center gap-3">
             <img src={SettingsIcon} alt="settings icon" className="size-6" />
             <div className="flex flex-col gap-1">
@@ -75,7 +69,7 @@ const BudgetModal = ({
           <button className="h-[46px] mt-2 w-full bg-[#18181B] text-white font-medium rounded-full cursor-pointer hover:bg-[#18181B]/90 transition-colors">
             Create Budget
           </button>
-        </DialogDescription>
+        </div>
       </DialogContent>
     </Dialog>
   );

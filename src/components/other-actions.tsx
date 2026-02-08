@@ -41,7 +41,7 @@ const OtherActions = () => {
 
             {/* content */}
             <div className="absolute bottom-8 left-4 right-4 text-white space-y-1">
-              <p className="text-xs tracking-wide opacity-90">{tag}</p>
+              <p className="text-sm font-medium uppercase">{tag}</p>
               <h3 className="text-lg font-semibold leading-snug">{title}</h3>
             </div>
 

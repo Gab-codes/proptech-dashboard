@@ -43,7 +43,7 @@ const SalesBarChart = () => {
   };
 
   return (
-    <div className="w-full lg:w-[400px] 2xl:w-[500px] max-w-full">
+    <div className="w-full lg:w-100 2xl:w-125 max-w-full">
       <div className="flex items-center gap-1">
         {/* left button */}
         <button
@@ -60,7 +60,7 @@ const SalesBarChart = () => {
         </button>
 
         {/* chart */}
-        <div className="h-[200px] flex-1 -ms-6">
+        <div className="h-50 flex-1 -ms-6">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart
               data={visibleData}

@@ -27,7 +27,7 @@ const icons: {
     src: budgeting,
     alt: "budgeting icon",
     action: "budget",
-    tooltip: "Budget",
+    tooltip: "Budgeting",
   },
   {
     src: calender,
@@ -35,8 +35,8 @@ const icons: {
     action: "calendar",
     tooltip: "Calendar",
   },
-  { src: search, alt: "search icon", tooltip: "Search" },
-  { src: payout, alt: "payout icon", tooltip: "Payout" },
+  { src: search, alt: "search icon", tooltip: "Search Activity" },
+  { src: payout, alt: "payout icon", tooltip: "Payout Center" },
   { src: marketplace, alt: "marketplace icon", tooltip: "Marketplace" },
 ];
 
@@ -81,11 +81,10 @@ const Header = () => {
                 ref={action === "calendar" ? calendarButtonRef : null}
               >
                 <Tooltip>
-                  <TooltipTrigger>
+                  <TooltipTrigger onClick={() => handleIconClick(action)}>
                     <img
                       src={src}
                       alt={alt}
-                      onClick={() => handleIconClick(action)}
                       className="hover:scale-110 size-5.5 md:size-9 transition-all duration-300 cursor-pointer"
                     />
                   </TooltipTrigger>

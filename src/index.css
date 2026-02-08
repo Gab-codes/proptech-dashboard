@@ -3,6 +3,8 @@
 @import "tw-animate-css";
 
 :root {
+  max-width: 1600px;
+  margin: 0 auto;
   font-family: "Euclid Circular B", system-ui, Helvetica, Arial, sans-serif;
   --primary: #105b48;
   --card-border: #e4e4e4;
