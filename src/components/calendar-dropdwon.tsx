@@ -15,6 +15,7 @@ const CalendarDropdown = ({
   const [currentDate, setCurrentDate] = useState(new Date(2023, 10, 16)); // November 2023, 16th selected
   const calendarRef = useRef<HTMLDivElement>(null);
   const [position, setPosition] = useState({ top: 0, left: 0 });
+  const [pointerLeft, setPointerLeft] = useState<number | null>(null);
 
   const monthNames = [
     "January",
@@ -36,12 +37,23 @@ const CalendarDropdown = ({
   useEffect(() => {
     if (isCalendarOpen && buttonRef.current) {
       const buttonRect = buttonRef.current.getBoundingClientRect();
-      const calendarWidth = 400; // Width of calendar
+      const isMobile = window.innerWidth < 640;
+      const calendarWidth = isMobile ? 300 : 400;
+
+      let left = buttonRect.left + buttonRect.width / 2 - calendarWidth / 2;
+
+      const padding = 10;
+      const maxLeft = window.innerWidth - calendarWidth - padding;
+      left = Math.max(padding, Math.min(left, maxLeft));
+
+      const buttonCenter = buttonRect.left + buttonRect.width / 2;
+      const pointerX = buttonCenter - left;
 
       setPosition({
         top: buttonRect.bottom + 12, // 12px gap + pointer height
-        left: buttonRect.left + buttonRect.width / 2 - calendarWidth / 2,
+        left: left,
       });
+      setPointerLeft(pointerX);
     }
   }, [isCalendarOpen, buttonRef]);
 
@@ -133,14 +145,20 @@ const CalendarDropdown = ({
       {/* Calendar Dropdown */}
       <div
         ref={calendarRef}
-        className="fixed z-50 w-100"
+        className="fixed z-50 w-70 sm:w-100"
         style={{
           top: `${position.top}px`,
           left: `${position.left}px`,
         }}
       >
         {/* Pointer Arrow */}
-        <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-0 h-0 border-l-8 border-r-8 border-b-8 border-l-transparent border-r-transparent border-b-[#0D0D0D]" />
+        <div
+          className="absolute -top-2 w-0 h-0 border-l-8 border-r-8 border-b-8 border-l-transparent border-r-transparent border-b-[#0D0D0D]"
+          style={{
+            left: pointerLeft ? `${pointerLeft}px` : "50%",
+            transform: "translateX(-50%)",
+          }}
+        />
 
         {/* Calendar Container */}
         <div className="bg-[#0D0D0D] rounded-lg shadow-2xl text-white overflow-hidden">

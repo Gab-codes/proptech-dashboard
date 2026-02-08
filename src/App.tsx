@@ -8,13 +8,13 @@ function App() {
   return (
     <main className="bg-[#fbfcfc] min-h-screen">
       <Header />
-      <div className="px-15">
+      <div className="px-4 lg:px-15">
         <h2 className="text-xl font-semibold my-4">Welcome, Ahmed</h2>
-        <div className="grid grid-cols-6 gap-6">
-          <div className="col-span-4">
+        <div className="grid grid-cols-1 lg:grid-cols-6 gap-6">
+          <div className="col-span-1 lg:col-span-4">
             <SalesOverview />
           </div>
-          <div className="col-span-2 grid gap-6 h-full ">
+          <div className="col-span-1 lg:col-span-2 grid gap-6 h-full ">
             <ListingOverview />
             <UserOverview />
           </div>

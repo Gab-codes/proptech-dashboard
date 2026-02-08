@@ -23,7 +23,7 @@ const cards = [
 const OtherActions = () => {
   return (
     <section className="my-6">
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {cards.map(({ tag, title, image }, index) => (
           <div
             key={index}

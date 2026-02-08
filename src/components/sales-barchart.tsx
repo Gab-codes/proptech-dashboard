@@ -43,7 +43,7 @@ const SalesBarChart = () => {
   };
 
   return (
-    <div className="w-[400px] 2xl:w-[500px] max-w-full">
+    <div className="w-full lg:w-[400px] 2xl:w-[500px] max-w-full">
       <div className="flex items-center gap-1">
         {/* left button */}
         <button

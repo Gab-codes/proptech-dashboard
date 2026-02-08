@@ -57,11 +57,11 @@ const Header = () => {
   return (
     <header className="flex flex-col z-50 sticky top-0 border-b border-[#F4F4F5]">
       {/* header top */}
-      <div className="bg-primary flex items-center justify-between px-15 py-4">
-        <img src={logo} alt="logo" className="object-contain" />
+      <div className="bg-primary flex items-center justify-between px-4 lg:px-15 py-4">
+        <img src={logo} alt="logo" className="object-contain max-sm:w-30" />
 
-        <div className="flex items-center gap-5">
-          <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2 md:gap-5">
+          <div className="flex items-center gap-2 md:gap-4">
             {icons.map(({ src, alt, action }, idx) => (
               <div
                 key={idx}
@@ -72,26 +72,26 @@ const Header = () => {
                   src={src}
                   alt={alt}
                   onClick={() => handleIconClick(action)}
-                  className="hover:scale-110 transition-all duration-300 cursor-pointer"
+                  className="hover:scale-110 size-6 md:size-9 transition-all duration-300 cursor-pointer"
                 />
               </div>
             ))}
           </div>
 
-          <div className="size-10 flex items-center justify-center rounded-full bg-white text-[23px] text-primary font-medium">
+          <div className="size-6 md:size-10 flex items-center justify-center rounded-full bg-white md:text-[23px] text-primary font-medium">
             D
           </div>
         </div>
       </div>
 
       {/* header bottom  */}
-      <nav className="px-15 py-4 bg-white flex items-center justify-between">
+      <nav className="px-4 lg:px-15 py-4 bg-white flex items-center lg:justify-between overflow-x-auto gap-4 lg:gap-0">
         {navItems.map(({ href, icon, label, active }) => (
           <a
             key={label}
             href={href}
             className={`
-            flex items-center px-8 py-2 gap-2 rounded-lg
+            flex items-center px-3 md:px-8 py-2 gap-2 rounded-lg shrink-0
             transition-all duration-300 ease-in-out
             ${
               active
@@ -103,10 +103,10 @@ const Header = () => {
             <img
               src={icon}
               alt={`${label.toLowerCase()} icon`}
-              className="size-6"
+              className="size-5 md:size-6"
             />
             <p
-              className={`text-sm transition-colors duration-300 ease-in-out ${active && "font-semibold"}`}
+              className={`text-xs md:text-sm whitespace-nowrap transition-colors duration-300 ease-in-out ${active && "font-semibold"}`}
             >
               {label}
             </p>
