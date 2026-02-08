@@ -27,7 +27,7 @@ const OtherActions = () => {
         {cards.map(({ tag, title, image }, index) => (
           <div
             key={index}
-            className="relative h-[286px] w-full rounded-xl overflow-hidden"
+            className="relative h-71.5 w-full rounded-xl overflow-hidden"
           >
             {/* background image */}
             <img

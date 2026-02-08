@@ -13,6 +13,7 @@ import task from "../assets/task-square.svg";
 import { useState, useRef } from "react";
 import BudgetModal from "./budget-modal";
 import CalendarDropdown from "./calendar-dropdwon";
+import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 
 type IconAction = "budget" | "calendar" | undefined;
 
@@ -20,12 +21,23 @@ const icons: {
   src: string;
   alt: string;
   action?: IconAction;
+  tooltip: string;
 }[] = [
-  { src: budgeting, alt: "budgeting icon", action: "budget" },
-  { src: calender, alt: "calendar icon", action: "calendar" },
-  { src: search, alt: "search icon" },
-  { src: payout, alt: "payout icon" },
-  { src: marketplace, alt: "marketplace icon" },
+  {
+    src: budgeting,
+    alt: "budgeting icon",
+    action: "budget",
+    tooltip: "Budget",
+  },
+  {
+    src: calender,
+    alt: "calendar icon",
+    action: "calendar",
+    tooltip: "Calendar",
+  },
+  { src: search, alt: "search icon", tooltip: "Search" },
+  { src: payout, alt: "payout icon", tooltip: "Payout" },
+  { src: marketplace, alt: "marketplace icon", tooltip: "Marketplace" },
 ];
 
 const navItems = [
@@ -62,18 +74,23 @@ const Header = () => {
 
         <div className="flex items-center gap-2 md:gap-5">
           <div className="flex items-center gap-2 md:gap-4">
-            {icons.map(({ src, alt, action }, idx) => (
+            {icons.map(({ src, alt, action, tooltip }, idx) => (
               <div
                 key={idx}
                 className="relative"
                 ref={action === "calendar" ? calendarButtonRef : null}
               >
-                <img
-                  src={src}
-                  alt={alt}
-                  onClick={() => handleIconClick(action)}
-                  className="hover:scale-110 size-6 md:size-9 transition-all duration-300 cursor-pointer"
-                />
+                <Tooltip>
+                  <TooltipTrigger>
+                    <img
+                      src={src}
+                      alt={alt}
+                      onClick={() => handleIconClick(action)}
+                      className="hover:scale-110 size-5.5 md:size-9 transition-all duration-300 cursor-pointer"
+                    />
+                  </TooltipTrigger>
+                  <TooltipContent>{tooltip}</TooltipContent>
+                </Tooltip>
               </div>
             ))}
           </div>
