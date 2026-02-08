@@ -10,8 +10,10 @@ import user from "../assets/Profile1.svg";
 import article from "../assets/Article.svg";
 import scroll from "../assets/Scroll.svg";
 import task from "../assets/task-square.svg";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import BudgetModal from "./budget-modal";
+import CalendarDropdown from "./calendar-dropdwon";
+import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 
 type IconAction = "budget" | "calendar" | undefined;
 
@@ -19,12 +21,23 @@ const icons: {
   src: string;
   alt: string;
   action?: IconAction;
+  tooltip: string;
 }[] = [
-  { src: budgeting, alt: "budgeting icon", action: "budget" },
-  { src: calender, alt: "calendar icon", action: "calendar" },
-  { src: search, alt: "search icon" },
-  { src: payout, alt: "payout icon" },
-  { src: marketplace, alt: "marketplace icon" },
+  {
+    src: budgeting,
+    alt: "budgeting icon",
+    action: "budget",
+    tooltip: "Budgeting",
+  },
+  {
+    src: calender,
+    alt: "calendar icon",
+    action: "calendar",
+    tooltip: "Calendar",
+  },
+  { src: search, alt: "search icon", tooltip: "Search Activity" },
+  { src: payout, alt: "payout icon", tooltip: "Payout Center" },
+  { src: marketplace, alt: "marketplace icon", tooltip: "Marketplace" },
 ];
 
 const navItems = [
@@ -38,53 +51,63 @@ const navItems = [
 
 const Header = () => {
   const [isBudgetOpen, setIsBudgetOpen] = useState(false);
+  const [isCalendarOpen, setIsCalendarOpen] = useState(false);
+  const calendarButtonRef = useRef<HTMLDivElement | null>(null);
 
   const handleIconClick = (action?: string) => {
     if (!action) return;
 
     if (action === "budget") {
-      setIsBudgetOpen(true);
+      setIsBudgetOpen((prev) => !prev);
     }
 
-    // if (action === "calendar") {
-    //   setIsCalendarOpen((prev) => !prev);
-    // }
+    if (action === "calendar") {
+      setIsCalendarOpen((prev) => !prev);
+    }
   };
 
   return (
     <header className="flex flex-col z-50 sticky top-0 border-b border-[#F4F4F5]">
       {/* header top */}
-      <div className="bg-primary flex items-center justify-between px-15 py-4">
-        <img src={logo} alt="logo" className="object-contain" />
+      <div className="bg-primary flex items-center justify-between px-4 lg:px-15 py-4">
+        <img src={logo} alt="logo" className="object-contain max-sm:w-30" />
 
-        <div className="flex items-center gap-5">
-          <div className="flex items-center gap-4">
-            {icons.map(({ src, alt, action }, idx) => (
-              <div key={idx} className="relative">
-                <img
-                  src={src}
-                  alt={alt}
-                  onClick={() => handleIconClick(action)}
-                  className="hover:scale-110 transition-all duration-300 cursor-pointer"
-                />
+        <div className="flex items-center gap-2 md:gap-5">
+          <div className="flex items-center gap-2 md:gap-4">
+            {icons.map(({ src, alt, action, tooltip }, idx) => (
+              <div
+                key={idx}
+                className="relative"
+                ref={action === "calendar" ? calendarButtonRef : null}
+              >
+                <Tooltip>
+                  <TooltipTrigger onClick={() => handleIconClick(action)}>
+                    <img
+                      src={src}
+                      alt={alt}
+                      className="hover:scale-110 size-5.5 md:size-9 transition-all duration-300 cursor-pointer"
+                    />
+                  </TooltipTrigger>
+                  <TooltipContent>{tooltip}</TooltipContent>
+                </Tooltip>
               </div>
             ))}
           </div>
 
-          <div className="size-10 flex items-center justify-center rounded-full bg-white text-[23px] text-primary font-medium">
+          <div className="size-6 md:size-10 flex items-center justify-center rounded-full bg-white md:text-[23px] text-primary font-medium">
             D
           </div>
         </div>
       </div>
 
       {/* header bottom  */}
-      <nav className="px-15 py-4 bg-white flex items-center justify-between">
+      <nav className="px-4 lg:px-15 py-4 bg-white flex items-center lg:justify-between overflow-x-auto gap-4 lg:gap-0">
         {navItems.map(({ href, icon, label, active }) => (
           <a
             key={label}
             href={href}
             className={`
-            flex items-center px-8 py-2 gap-2 rounded-lg
+            flex items-center px-3 md:px-8 py-2 gap-2 rounded-lg shrink-0
             transition-all duration-300 ease-in-out
             ${
               active
@@ -96,10 +119,10 @@ const Header = () => {
             <img
               src={icon}
               alt={`${label.toLowerCase()} icon`}
-              className="size-6"
+              className="size-5 md:size-6"
             />
             <p
-              className={`text-sm transition-colors duration-300 ease-in-out ${active && "font-semibold"}`}
+              className={`text-xs md:text-sm whitespace-nowrap transition-colors duration-300 ease-in-out ${active && "font-semibold"}`}
             >
               {label}
             </p>
@@ -110,6 +133,12 @@ const Header = () => {
       <BudgetModal
         isBudgetOpen={isBudgetOpen}
         setIsBudgetOpen={setIsBudgetOpen}
+      />
+
+      <CalendarDropdown
+        isCalendarOpen={isCalendarOpen}
+        setIsCalendarOpen={setIsCalendarOpen}
+        buttonRef={calendarButtonRef as React.RefObject<HTMLDivElement>}
       />
     </header>
   );
