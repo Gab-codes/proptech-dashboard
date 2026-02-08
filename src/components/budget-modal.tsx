@@ -20,7 +20,7 @@ const BudgetModal = ({
   return (
     <Dialog open={isBudgetOpen} onOpenChange={setIsBudgetOpen}>
       <DialogContent
-        className="w-[438px] bg-white rounded-[10px] p-0 pb-6 border-0 overflow-hidden"
+        className="w-[438px] bg-white rounded-[10px] p-0 pb-6 border-0 outline-0 overflow-hidden"
         showCloseButton={false}
       >
         <div className="bg-[#0C2841]">
