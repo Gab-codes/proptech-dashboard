@@ -1,5 +1,5 @@
-import HomeIcon from "../assets/solar_home-linear.svg";
-import ArrowRight from "../assets/chevron-arrow-right-blue.svg";
+import HomeIcon from "../assets/img/solar_home-linear.svg";
+import ArrowRight from "../assets/img/chevron-arrow-right-blue.svg";
 
 const ListingOverview = () => {
   return (

@@ -1,5 +1,5 @@
-import UserIcon from "../assets/profile.svg";
-import ArrowRight from "../assets/chevron-arrow-right-blue.svg";
+import UserIcon from "../assets/img/profile.svg";
+import ArrowRight from "../assets/img/chevron-arrow-right-blue.svg";
 
 const UserOverview = () => {
   return (

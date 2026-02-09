@@ -1,8 +1,8 @@
 import { cn } from "@/lib/utils";
 import { X, ArrowLeft } from "lucide-react";
 import { useEffect, useState } from "react";
-import arrow_left from "../assets/calendar-arrow-left.svg";
-import arrow_right from "../assets/calendar-arrow-right.svg";
+import arrow_left from "../assets/img/calendar-arrow-left.svg";
+import arrow_right from "../assets/img/calendar-arrow-right.svg";
 
 interface CalendarDropdownProps {
   isCalendarOpen: boolean;

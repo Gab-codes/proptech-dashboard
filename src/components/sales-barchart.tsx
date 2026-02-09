@@ -7,8 +7,8 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { useState } from "react";
-import ArrowRight from "../assets/arrow-fill-right.svg";
-import ArrowLeft from "../assets/arrow-fill-left.svg";
+import ArrowRight from "../assets/img/arrow-fill-right.svg";
+import ArrowLeft from "../assets/img/arrow-fill-left.svg";
 
 const data = [
   { month: "Jan", blue: 35, green: 27, red: 9 },

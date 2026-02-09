@@ -1,6 +1,6 @@
-import img1 from "../assets/img1.webp";
-import img2 from "../assets/img2.webp";
-import img3 from "../assets/img3.webp";
+import img1 from "../assets/img/img1.webp";
+import img2 from "../assets/img/img2.webp";
+import img3 from "../assets/img/img3.webp";
 import {
   Carousel,
   CarouselContent,
