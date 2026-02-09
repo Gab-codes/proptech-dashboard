@@ -101,7 +101,7 @@ const Header = () => {
       </div>
 
       {/* header bottom  */}
-      <nav className="px-4 lg:px-15 py-4 bg-white flex items-center lg:justify-between overflow-x-auto gap-4 lg:gap-0 lg:overflow-hidden">
+      <nav className="px-4 lg:px-15 py-4 bg-white flex items-center lg:justify-between overflow-x-auto gap-4 lg:gap-0 lg:overflow-hidden [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
         {navItems.map(({ href, icon, label, active }) => (
           <a
             key={label}
@@ -122,7 +122,9 @@ const Header = () => {
               className="size-5 md:size-6"
             />
             <p
-              className={`text-xs md:text-sm whitespace-nowrap transition-colors duration-300 ease-in-out ${active && "font-semibold"}`}
+              className={`text-xs md:text-sm whitespace-nowrap transition-colors duration-300 ease-in-out ${
+                active && "font-semibold"
+              }`}
             >
               {label}
             </p>

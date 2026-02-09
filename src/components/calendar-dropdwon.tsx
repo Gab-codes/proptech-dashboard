@@ -83,10 +83,9 @@ const CalendarDropdown = ({
                 <h2 className="text-base font-medium">Calendar</h2>
               </div>
 
-              <X
-                className="w-5 h-5 cursor-pointer"
-                onClick={() => setIsCalendarOpen(false)}
-              />
+              <button onClick={() => setIsCalendarOpen(false)}>
+                <X className="w-5 h-5 cursor-pointer" />
+              </button>
             </div>
 
             {/* month */}
