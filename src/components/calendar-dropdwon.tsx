@@ -38,9 +38,11 @@ const CalendarDropdown = ({
     if (!isCalendarOpen || !buttonRef.current) return;
 
     const rect = buttonRef.current.getBoundingClientRect();
-    const width = 400;
+    const isMobile = window.innerWidth < 640;
+    const width = isMobile ? 320 : 400;
 
-    const left = rect.left + rect.width / 2 - width / 2;
+    const rawLeft = rect.left + rect.width / 2 - width / 2;
+    const left = Math.max(12, rawLeft);
     const pointer = rect.left + rect.width / 2 - left;
 
     const isBottom = rect.bottom > window.innerHeight - 150;
@@ -49,12 +51,12 @@ const CalendarDropdown = ({
       setPosition({
         top: "auto",
         bottom: window.innerHeight - rect.top + 12,
-        left: Math.max(12, left),
+        left: left,
       });
     } else {
       setPosition({
         top: rect.bottom + 12,
-        left: Math.max(12, left),
+        left: left,
         bottom: "auto",
       });
     }
@@ -79,7 +81,7 @@ const CalendarDropdown = ({
 
       {/* dropdown */}
       <div
-        className="fixed z-50 w-80 sm:w-100"
+        className="fixed z-50 w-[85%] sm:w-100"
         style={{
           top: position.top,
           left: position.left,
@@ -88,10 +90,9 @@ const CalendarDropdown = ({
       >
         {/* pointer */}
         <div
-          className={cn(
-            "absolute w-0 h-0 border-l-8 border-r-8 border-l-transparent border-r-transparent border-b-[#0D0D0D] -translate-x-1/2",
-            position.bottom ? "-bottom-2 rotate-180" : "-top-2",
-          )}
+          className="absolute -translate-x-1/2 w-0 h-0 border-l-8 border-r-8 border-b-8 
+                     border-l-transparent border-r-transparent border-b-[#0D0D0D]
+                     -top-2 max-sm:top-auto max-sm:-bottom-2 max-sm:rotate-180"
           style={{ left: pointerLeft }}
         />
 
@@ -140,8 +141,7 @@ const CalendarDropdown = ({
                 return (
                   <div
                     key={i}
-                    className="relative h-16 sm:h-13 xl:h-16 2xl:h-[91.2px]
-                    flex items-start justify-start p-2
+                    className="relative h-16 sm:h-13 xl:h-16 2xl:h-[91.2px] flex items-start justify-start p-2
                     border border-[#242424] text-[9.94px] font-medium"
                   >
                     <span

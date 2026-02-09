@@ -35,6 +35,6 @@ The UI was carefully implemented to remain usable across different assistive tec
 
 - Strong **TypeScript typing** to reduce runtime errors
 - Consistent component patterns for maintainability and scalability
-- UI interactions tested to ensure stability across devices and input methods
+- UI interactions tested to ensure stability across devices
 
 ---
