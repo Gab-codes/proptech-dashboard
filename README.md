@@ -1,4 +1,17 @@
-# Project Overview
+# Preview
+
+### Desktop
+
+![Desktop preview](./public/preview-desktop.png)
+
+### Mobile
+
+<p align="center">
+  <img src="./public/mobile-preview-1.jpg" alt="Mobile preview 1" width="45%" />
+  <img src="./public/mobile-preview-2.jpg" alt="Mobile preview 2" width="45%" />
+</p>
+
+## Project Overview
 
 This project is a modern frontend dashboard built with a strong emphasis on **performance**, **accessibility**, and **responsiveness**, while maintaining a clean and scalable architecture.
 
@@ -34,6 +47,7 @@ The UI was carefully implemented to remain usable across different assistive tec
 ## Code Quality
 
 - Strong **TypeScript typing** to reduce runtime errors
+- Prettier for code formatting
 - Consistent component patterns for maintainability and scalability
 - UI interactions tested to ensure stability across devices
 
