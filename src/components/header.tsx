@@ -1,11 +1,11 @@
 import logo from "../assets/logo.svg";
-import budgeting from "../assets/budgeting.svg";
+import budgeting from "../assets/Budgeting.svg";
 import calender from "../assets/Calendar.svg";
 import search from "../assets/search-icon.svg";
-import payout from "../assets/payout.svg";
+import payout from "../assets/Payout.svg";
 import marketplace from "../assets/Marketplace.svg";
 import home from "../assets/Home1.svg";
-import toolbox from "../assets/toolbox.svg";
+import toolbox from "../assets/Toolbox.svg";
 import user from "../assets/Profile1.svg";
 import article from "../assets/Article.svg";
 import scroll from "../assets/Scroll.svg";
@@ -101,7 +101,7 @@ const Header = () => {
       </div>
 
       {/* header bottom  */}
-      <nav className="px-4 lg:px-15 py-4 bg-white flex items-center lg:justify-between overflow-x-auto gap-4 lg:gap-0">
+      <nav className="px-4 lg:px-15 py-4 bg-white flex items-center lg:justify-between overflow-x-auto gap-4 lg:gap-0 lg:overflow-hidden">
         {navItems.map(({ href, icon, label, active }) => (
           <a
             key={label}

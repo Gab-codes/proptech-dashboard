@@ -1,6 +1,8 @@
 import { cn } from "@/lib/utils";
-import { X, ArrowLeft, ChevronLeft, ChevronRight } from "lucide-react";
+import { X, ArrowLeft } from "lucide-react";
 import { useEffect, useState } from "react";
+import arrow_left from "../assets/calendar-arrow-left.svg";
+import arrow_right from "../assets/calendar-arrow-right.svg";
 
 interface CalendarDropdownProps {
   isCalendarOpen: boolean;
@@ -47,20 +49,25 @@ const CalendarDropdown = ({
 
   if (!isCalendarOpen) return null;
 
+  const flatCalendar = CALENDAR_GRID.flat();
+
+  const novStartIndex = flatCalendar.findIndex((d) => d.startsWith("Nov"));
+  const decStartIndex = flatCalendar.findIndex((d) => d.startsWith("DEC"));
+
   return (
     <>
-      {/* Backdrop */}
+      {/* backdrop */}
       <div
         className="fixed inset-0 z-40"
         onClick={() => setIsCalendarOpen(false)}
       />
 
-      {/* Dropdown */}
+      {/* dropdown */}
       <div
         className="fixed z-50 w-80 sm:w-100"
         style={{ top: position.top, left: position.left }}
       >
-        {/* Pointer */}
+        {/* pointer */}
         <div
           className="absolute -top-2 w-0 h-0 border-l-8 border-r-8 border-b-8 
                      border-l-transparent border-r-transparent border-b-[#0D0D0D]"
@@ -68,7 +75,7 @@ const CalendarDropdown = ({
         />
 
         <div className="bg-[#0D0D0D] rounded-xl shadow-2xl overflow-hidden text-white">
-          {/* Header */}
+          {/* header */}
           <div className="px-6 pt-6 pb-4">
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center gap-3">
@@ -82,14 +89,14 @@ const CalendarDropdown = ({
               />
             </div>
 
-            {/* Month */}
-            <div className="relative flex items-center justify-center mb-6">
-              <ChevronLeft className="absolute left-0 text-[#98A2B3]" />
+            {/* month */}
+            <div className="relative flex items-center justify-center gap-7.25 mb-6">
+              <img src={arrow_left} alt="arrow left" className="size-6" />
               <span className="text-sm">November 2023</span>
-              <ChevronRight className="absolute right-0 text-[#98A2B3]" />
+              <img src={arrow_right} alt="arrow right" className="size-6" />
             </div>
 
-            {/* Day names */}
+            {/* days in the week names */}
             <div className="grid grid-cols-7">
               {DAYS.map((day) => (
                 <div
@@ -102,19 +109,20 @@ const CalendarDropdown = ({
               ))}
             </div>
 
-            {/* Calendar grid */}
+            {/* calendar grid */}
             <div className="grid grid-cols-7">
-              {CALENDAR_GRID.flat().map((day, i) => {
+              {flatCalendar.map((day, i) => {
                 const isSelected = day === "16";
-                const isNovLabel = day.startsWith("Nov");
-                const isCurrentMonthLabel = isNovLabel;
+                const isCurrentMonth =
+                  i >= novStartIndex &&
+                  (decStartIndex === -1 || i < decStartIndex);
 
                 return (
                   <div
                     key={i}
                     className="relative h-16 sm:h-13 xl:h-16 2xl:h-[91.2px]
-    flex items-start justify-start p-2
-    border border-[#242424] text-[9.94px] font-medium"
+                    flex items-start justify-start p-2
+                    border border-[#242424] text-[9.94px] font-medium"
                   >
                     <span
                       className={cn(
@@ -122,7 +130,7 @@ const CalendarDropdown = ({
                         isSelected &&
                           "bg-[#2525E6] px-2 py-0.5 rounded-full text-white",
                         !isSelected &&
-                          (isCurrentMonthLabel
+                          (isCurrentMonth
                             ? "text-[#969696]"
                             : "text-[#BBBBBB99]"),
                       )}
