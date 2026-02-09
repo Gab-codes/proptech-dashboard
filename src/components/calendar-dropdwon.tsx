@@ -27,22 +27,39 @@ const CalendarDropdown = ({
   setIsCalendarOpen,
   buttonRef,
 }: CalendarDropdownProps) => {
-  const [position, setPosition] = useState({ top: 0, left: 0 });
+  const [position, setPosition] = useState<{
+    top: number | string;
+    left: number;
+    bottom?: number | string;
+  }>({ top: 0, left: 0 });
   const [pointerLeft, setPointerLeft] = useState(0);
 
   useEffect(() => {
     if (!isCalendarOpen || !buttonRef.current) return;
 
     const rect = buttonRef.current.getBoundingClientRect();
-    const width = 400;
+    const isMobile = window.innerWidth < 640;
+    const width = isMobile ? 320 : 400;
 
-    const left = rect.left + rect.width / 2 - width / 2;
+    const rawLeft = rect.left + rect.width / 2 - width / 2;
+    const left = Math.max(12, rawLeft);
     const pointer = rect.left + rect.width / 2 - left;
 
-    setPosition({
-      top: rect.bottom + 12,
-      left: Math.max(12, left),
-    });
+    const isBottom = rect.bottom > window.innerHeight - 150;
+
+    if (isBottom) {
+      setPosition({
+        top: "auto",
+        bottom: window.innerHeight - rect.top + 12,
+        left: left,
+      });
+    } else {
+      setPosition({
+        top: rect.bottom + 12,
+        left: left,
+        bottom: "auto",
+      });
+    }
 
     setPointerLeft(pointer);
   }, [isCalendarOpen, buttonRef]);
@@ -64,27 +81,32 @@ const CalendarDropdown = ({
 
       {/* dropdown */}
       <div
-        className="fixed z-50 w-80 sm:w-100"
-        style={{ top: position.top, left: position.left }}
+        className="fixed z-50 w-[85%] sm:w-100"
+        style={{
+          top: position.top,
+          left: position.left,
+          bottom: position.bottom,
+        }}
       >
         {/* pointer */}
         <div
-          className="absolute -top-2 w-0 h-0 border-l-8 border-r-8 border-b-8 
-                     border-l-transparent border-r-transparent border-b-[#0D0D0D]"
-          style={{ left: pointerLeft, transform: "translateX(-50%)" }}
+          className="absolute -translate-x-1/2 w-0 h-0 border-l-8 border-r-8 border-b-8 
+                     border-l-transparent border-r-transparent border-b-[#0D0D0D]
+                     -top-2 max-sm:top-auto max-sm:-bottom-2 max-sm:rotate-180"
+          style={{ left: pointerLeft }}
         />
 
         <div className="bg-[#0D0D0D] rounded-xl shadow-2xl overflow-hidden text-white">
           {/* header */}
-          <div className="px-6 pt-6 pb-4">
+          <div className="px-3 sm:px-6 pt-6 pb-4">
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center gap-3">
-                <ArrowLeft className="w-5 h-5 text-[#98A2B3]" />
+                <ArrowLeft className="size-5 text-[#98A2B3]" />
                 <h2 className="text-base font-medium">Calendar</h2>
               </div>
 
               <button onClick={() => setIsCalendarOpen(false)}>
-                <X className="w-5 h-5 cursor-pointer" />
+                <X className="size-5 cursor-pointer" />
               </button>
             </div>
 
@@ -119,8 +141,7 @@ const CalendarDropdown = ({
                 return (
                   <div
                     key={i}
-                    className="relative h-16 sm:h-13 xl:h-16 2xl:h-[91.2px]
-                    flex items-start justify-start p-2
+                    className="relative h-16 sm:h-13 xl:h-16 2xl:h-[91.2px] flex items-start justify-start p-2
                     border border-[#242424] text-[9.94px] font-medium"
                   >
                     <span

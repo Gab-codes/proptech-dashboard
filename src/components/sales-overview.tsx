@@ -68,10 +68,10 @@ const SalesOverview = () => {
       <div className="border border-card-border w-full" />
 
       {/* bottom content  */}
-      <div className="px-2 lg:ps-2 lg:pe-5 py-4 flex flex-col lg:flex-row items-center justify-between gap-6 lg:gap-0">
+      <div className="px-2 lg:ps-2 lg:pe-5 py-1 flex flex-col lg:flex-row items-center justify-between gap-6 lg:gap-0">
         <SalesBarChart />
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full lg:w-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 max-md:pb-2.5 gap-4 w-full lg:w-auto">
           {stats.map(
             ({
               label,

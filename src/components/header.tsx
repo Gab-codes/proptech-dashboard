@@ -70,10 +70,10 @@ const Header = () => {
     <header className="flex flex-col z-50 sticky top-0 border-b border-[#F4F4F5]">
       {/* header top */}
       <div className="bg-primary flex items-center justify-between px-4 lg:px-15 py-4">
-        <img src={logo} alt="logo" className="object-contain max-sm:w-30" />
+        <img src={logo} alt="logo" className="object-contain max-sm:w-40" />
 
-        <div className="flex items-center gap-2 md:gap-5">
-          <div className="flex items-center gap-2 md:gap-4">
+        <div className="flex items-center gap-2.25 md:gap-5">
+          <div className="flex items-center gap-2 md:gap-4 max-sm:fixed max-sm:bottom-0 max-sm:left-0 max-sm:right-0 max-sm:z-50 max-sm:bg-primary max-sm:p-3 max-sm:pb-4 max-sm:justify-around max-sm:border-t max-sm:border-white/10">
             {icons.map(({ src, alt, action, tooltip }, idx) => (
               <div
                 key={idx}
@@ -85,7 +85,7 @@ const Header = () => {
                     <img
                       src={src}
                       alt={alt}
-                      className="hover:scale-110 size-5.5 md:size-9 transition-all duration-300 cursor-pointer"
+                      className="hover:scale-110 size-6 md:size-9 transition-all duration-300 cursor-pointer"
                     />
                   </TooltipTrigger>
                   <TooltipContent>{tooltip}</TooltipContent>
@@ -94,7 +94,7 @@ const Header = () => {
             ))}
           </div>
 
-          <div className="size-6 md:size-10 flex items-center justify-center rounded-full bg-white md:text-[23px] text-primary font-medium">
+          <div className="size-7 md:size-10 flex items-center justify-center rounded-full bg-white md:text-[23px] text-primary font-medium">
             D
           </div>
         </div>
