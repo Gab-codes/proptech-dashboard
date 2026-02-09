@@ -141,7 +141,7 @@ const CalendarDropdown = ({
                 return (
                   <div
                     key={i}
-                    className="relative h-16 sm:h-13 xl:h-16 2xl:h-[91.2px] flex items-start justify-start p-2
+                    className="relative h-16 sm:h-13 xl:h-14.5 2xl:h-[91.2px] flex items-start justify-start p-2
                     border border-[#242424] text-[9.94px] font-medium"
                   >
                     <span
