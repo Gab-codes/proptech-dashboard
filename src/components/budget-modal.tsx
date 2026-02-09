@@ -1,5 +1,5 @@
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "./ui/dialog";
-import BudgetSketch from "../assets/Sketch.png";
+import BudgetSketch from "../assets/Sketch.webp";
 import SettingsIcon from "../assets/setting-4.svg";
 import TrendingUp from "../assets/trend-up.svg";
 import AlignBottom from "../assets/align-bottom.svg";

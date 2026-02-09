@@ -1,6 +1,6 @@
-import img1 from "../assets/img1.jpg";
-import img2 from "../assets/img2.png";
-import img3 from "../assets/img3.png";
+import img1 from "../assets/img1.webp";
+import img2 from "../assets/img2.webp";
+import img3 from "../assets/img3.webp";
 import {
   Carousel,
   CarouselContent,
@@ -54,13 +54,13 @@ const CardItem = ({
       <Carousel className="w-full h-full" setApi={setApi}>
         <CarouselContent className="h-full ml-0">
           {images.map((image, imageIndex) => (
-            <CarouselItem key={imageIndex} className="h-full pl-0 select-none">
+            <CarouselItem key={imageIndex} className="h-full pl-0">
               <div className="relative w-full h-71.5">
                 {/* background image */}
                 <img
                   src={image}
                   alt={`${title} - ${imageIndex + 1}`}
-                  className="absolute inset-0 h-full w-full object-cover select-none pointer-events-none"
+                  className="absolute inset-0 size-full object-cover"
                 />
 
                 {/* gradient overlay */}
