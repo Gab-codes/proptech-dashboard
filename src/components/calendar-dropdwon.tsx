@@ -27,7 +27,11 @@ const CalendarDropdown = ({
   setIsCalendarOpen,
   buttonRef,
 }: CalendarDropdownProps) => {
-  const [position, setPosition] = useState({ top: 0, left: 0 });
+  const [position, setPosition] = useState<{
+    top: number | string;
+    left: number;
+    bottom?: number | string;
+  }>({ top: 0, left: 0 });
   const [pointerLeft, setPointerLeft] = useState(0);
 
   useEffect(() => {
@@ -39,10 +43,21 @@ const CalendarDropdown = ({
     const left = rect.left + rect.width / 2 - width / 2;
     const pointer = rect.left + rect.width / 2 - left;
 
-    setPosition({
-      top: rect.bottom + 12,
-      left: Math.max(12, left),
-    });
+    const isBottom = rect.bottom > window.innerHeight - 150;
+
+    if (isBottom) {
+      setPosition({
+        top: "auto",
+        bottom: window.innerHeight - rect.top + 12,
+        left: Math.max(12, left),
+      });
+    } else {
+      setPosition({
+        top: rect.bottom + 12,
+        left: Math.max(12, left),
+        bottom: "auto",
+      });
+    }
 
     setPointerLeft(pointer);
   }, [isCalendarOpen, buttonRef]);
@@ -65,13 +80,19 @@ const CalendarDropdown = ({
       {/* dropdown */}
       <div
         className="fixed z-50 w-80 sm:w-100"
-        style={{ top: position.top, left: position.left }}
+        style={{
+          top: position.top,
+          left: position.left,
+          bottom: position.bottom,
+        }}
       >
         {/* pointer */}
         <div
-          className="absolute -top-2 w-0 h-0 border-l-8 border-r-8 border-b-8 
-                     border-l-transparent border-r-transparent border-b-[#0D0D0D]"
-          style={{ left: pointerLeft, transform: "translateX(-50%)" }}
+          className={cn(
+            "absolute w-0 h-0 border-l-8 border-r-8 border-l-transparent border-r-transparent border-b-[#0D0D0D] -translate-x-1/2",
+            position.bottom ? "-bottom-2 rotate-180" : "-top-2",
+          )}
+          style={{ left: pointerLeft }}
         />
 
         <div className="bg-[#0D0D0D] rounded-xl shadow-2xl overflow-hidden text-white">

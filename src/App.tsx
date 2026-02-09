@@ -7,7 +7,7 @@ import UserOverview from "./components/user-overview";
 
 function App() {
   return (
-    <main className="bg-[#fbfcfc] min-h-screen">
+    <main className="bg-[#fbfcfc] min-h-screen overflow-x-hidden">
       <Header />
       <div className="px-4 lg:px-15">
         <h1 className="text-xl font-semibold my-4">Welcome, Ahmed</h1>
