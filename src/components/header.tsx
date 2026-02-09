@@ -1,5 +1,5 @@
 import logo from "../assets/logo.svg";
-import budgeting from "../assets/budgeting.svg";
+import budgeting from "../assets/Budgeting.svg";
 import calender from "../assets/Calendar.svg";
 import search from "../assets/search-icon.svg";
 import payout from "../assets/payout.svg";
@@ -101,7 +101,7 @@ const Header = () => {
       </div>
 
       {/* header bottom  */}
-      <nav className="px-4 lg:px-15 py-4 bg-white flex items-center lg:justify-between overflow-x-auto gap-4 lg:gap-0">
+      <nav className="px-4 lg:px-15 py-4 bg-white flex items-center lg:justify-between overflow-x-auto gap-4 lg:gap-0 lg:overflow-hidden">
         {navItems.map(({ href, icon, label, active }) => (
           <a
             key={label}

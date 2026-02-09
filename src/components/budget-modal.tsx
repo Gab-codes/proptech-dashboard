@@ -1,5 +1,5 @@
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "./ui/dialog";
-import BudgetSketch from "../assets/Sketch.svg";
+import BudgetSketch from "../assets/Sketch.png";
 import SettingsIcon from "../assets/setting-4.svg";
 import TrendingUp from "../assets/trend-up.svg";
 import AlignBottom from "../assets/align-bottom.svg";
@@ -14,7 +14,7 @@ const BudgetModal = ({
   return (
     <Dialog open={isBudgetOpen} onOpenChange={setIsBudgetOpen}>
       <DialogContent
-        className="w-[438px] bg-white rounded-[10px] p-0 pb-6 border-0 outline-0 overflow-hidden"
+        className="w-109.5 bg-white rounded-[10px] p-0 pb-6 border-0 outline-0 overflow-hidden"
         showCloseButton={false}
       >
         <div className="bg-[#0C2841]">
@@ -66,7 +66,7 @@ const BudgetModal = ({
             </div>
           </div>
 
-          <button className="h-[46px] mt-2 w-full bg-[#18181B] text-white font-medium rounded-full cursor-pointer hover:bg-[#18181B]/90 transition-colors">
+          <button className="h-11.5 mt-2 w-full bg-[#18181B] text-white font-medium rounded-full cursor-pointer hover:bg-[#18181B]/90 transition-colors">
             Create Budget
           </button>
         </div>
