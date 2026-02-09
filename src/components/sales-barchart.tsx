@@ -7,8 +7,8 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { useState } from "react";
-import ArrowRight from "../assets/arrow-fill-right.svg";
-import ArrowLeft from "../assets/arrow-fill-left.svg";
+import ArrowRight from "../assets/img/arrow-fill-right.svg";
+import ArrowLeft from "../assets/img/arrow-fill-left.svg";
 
 const data = [
   { month: "Jan", blue: 35, green: 27, red: 9 },
@@ -70,7 +70,7 @@ const SalesBarChart = () => {
               {/* x axis  */}
               <XAxis
                 dataKey="month"
-                tick={{ fontSize: 12, fill: "#6B7280", fontWeight: 400 }}
+                tick={{ fontSize: 10, fill: "#919191", fontWeight: 500 }}
                 axisLine={false}
                 tickLine={false}
                 padding={{ left: 8, right: 8 }}
@@ -80,7 +80,7 @@ const SalesBarChart = () => {
               <YAxis
                 ticks={yTicks}
                 tickFormatter={yTickFormatter}
-                tick={{ fontSize: 12, fill: "#9CA3AF" }}
+                tick={{ fontSize: 10, fill: "#9CA3AF" }}
                 tickLine={false}
                 axisLine={{ stroke: "#E6E6E9", strokeWidth: 1 }}
                 width={56}

@@ -1,15 +1,15 @@
-import logo from "../assets/logo.svg";
-import budgeting from "../assets/Budgeting.svg";
-import calender from "../assets/Calendar.svg";
-import search from "../assets/search-icon.svg";
-import payout from "../assets/Payout.svg";
-import marketplace from "../assets/Marketplace.svg";
-import home from "../assets/Home1.svg";
-import toolbox from "../assets/Toolbox.svg";
-import user from "../assets/Profile1.svg";
-import article from "../assets/Article.svg";
-import scroll from "../assets/Scroll.svg";
-import task from "../assets/task-square.svg";
+import logo from "../assets/img/logo.svg";
+import budgeting from "../assets/img/Budgeting.svg";
+import calender from "../assets/img/Calendar.svg";
+import search from "../assets/img/search-icon.svg";
+import payout from "../assets/img/Payout.svg";
+import marketplace from "../assets/img/Marketplace.svg";
+import home from "../assets/img/Home1.svg";
+import toolbox from "../assets/img/Toolbox.svg";
+import user from "../assets/img/Profile1.svg";
+import article from "../assets/img/Article.svg";
+import scroll from "../assets/img/Scroll.svg";
+import task from "../assets/img/task-square.svg";
 import { useState, useRef } from "react";
 import BudgetModal from "./budget-modal";
 import CalendarDropdown from "./calendar-dropdwon";
@@ -101,7 +101,7 @@ const Header = () => {
       </div>
 
       {/* header bottom  */}
-      <nav className="px-4 lg:px-15 py-4 bg-white flex items-center lg:justify-between overflow-x-auto gap-4 lg:gap-0 lg:overflow-hidden">
+      <nav className="px-4 lg:px-15 py-4 bg-white flex items-center lg:justify-between overflow-x-auto gap-4 lg:gap-0 lg:overflow-hidden [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
         {navItems.map(({ href, icon, label, active }) => (
           <a
             key={label}
@@ -122,7 +122,9 @@ const Header = () => {
               className="size-5 md:size-6"
             />
             <p
-              className={`text-xs md:text-sm whitespace-nowrap transition-colors duration-300 ease-in-out ${active && "font-semibold"}`}
+              className={`text-xs md:text-sm whitespace-nowrap transition-colors duration-300 ease-in-out ${
+                active && "font-semibold"
+              }`}
             >
               {label}
             </p>

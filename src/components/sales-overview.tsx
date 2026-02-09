@@ -1,6 +1,6 @@
-import ArrowUp from "../assets/arrow-up-green.svg";
-import RedArrowDown from "../assets/arrow-down-red.svg";
-import ArrowDown from "../assets/arrow-down-teal.svg";
+import ArrowUp from "../assets/img/arrow-up-green.svg";
+import RedArrowDown from "../assets/img/arrow-down-red.svg";
+import ArrowDown from "../assets/img/arrow-down-teal.svg";
 import SalesBarChart from "./sales-barchart";
 
 const stats = [

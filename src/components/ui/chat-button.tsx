@@ -1,4 +1,4 @@
-import Message from "../../assets/messages-3.svg";
+import Message from "../../assets/img/messages-3.svg";
 
 const ChatButton = () => {
   return (
