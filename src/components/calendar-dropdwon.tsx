@@ -76,15 +76,15 @@ const CalendarDropdown = ({
 
         <div className="bg-[#0D0D0D] rounded-xl shadow-2xl overflow-hidden text-white">
           {/* header */}
-          <div className="px-6 pt-6 pb-4">
+          <div className="px-3 sm:px-6 pt-6 pb-4">
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center gap-3">
-                <ArrowLeft className="w-5 h-5 text-[#98A2B3]" />
+                <ArrowLeft className="size-5 text-[#98A2B3]" />
                 <h2 className="text-base font-medium">Calendar</h2>
               </div>
 
               <button onClick={() => setIsCalendarOpen(false)}>
-                <X className="w-5 h-5 cursor-pointer" />
+                <X className="size-5 cursor-pointer" />
               </button>
             </div>
 

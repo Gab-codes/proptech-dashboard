@@ -72,7 +72,7 @@ const Header = () => {
       <div className="bg-primary flex items-center justify-between px-4 lg:px-15 py-4">
         <img src={logo} alt="logo" className="object-contain max-sm:w-30" />
 
-        <div className="flex items-center gap-2 md:gap-5">
+        <div className="flex items-center gap-2.25 md:gap-5">
           <div className="flex items-center gap-2 md:gap-4">
             {icons.map(({ src, alt, action, tooltip }, idx) => (
               <div
